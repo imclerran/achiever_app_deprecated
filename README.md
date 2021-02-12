@@ -1,4 +1,4 @@
-# achiever-app
+# Achiever
 
 ## A Todo app centered on encouraging users to achieve their goals through positive reinforcement.
 
