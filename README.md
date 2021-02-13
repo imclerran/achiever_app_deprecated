@@ -4,4 +4,4 @@
 
 ## Written with <3 in Flutter and Dart
 
-## Built using the principals of CLEAN archicture and TDD.
+## Built using Domain Driven Design principals, and TDD.
