@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 import 'package:uuid/uuid.dart';
 
-class Habit extends Equatable {
+class Habit extends Equatable with Comparable {
   final String id;
   final String title;
   final List<bool> doneDays;
@@ -36,6 +36,22 @@ class Habit extends Equatable {
       title: habit.title,
       doneDays: doneDays,
     );
+  }
+
+  bool get isDoneToday {
+    int weekday = DateTime.now().weekday;
+    return doneDays[weekday - 1];
+  }
+
+  @override
+  int compareTo(other) {
+    if (this.isDoneToday == other.isDoneToday) {
+      return this.title.compareTo(other.title);
+    }
+    if (this.isDoneToday && !other.isDoneToday) {
+      return 1;
+    }
+    return -1;
   }
 
   @override

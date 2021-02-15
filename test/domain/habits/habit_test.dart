@@ -69,4 +69,43 @@ void main() {
       }
     }
   });
+
+  test("Habit.compareTo() sorts habits that are not done before done.", () {
+    // arrange
+    final doneHabit = Habit.doneToday(Habit(title: "test title 1"));
+    final notDoneHabit = Habit.notDoneToday(Habit(title: "test title 2"));
+    // act
+    int compareDoneToNot = doneHabit.compareTo(notDoneHabit);
+    // assert
+    assert(compareDoneToNot > 0);
+  });
+
+  test(
+      "Habit.compareTo() sorts tasks with the same done status alphabetically by title",
+      () {
+    // arrange
+    final habitA = Habit(title: "aa");
+    final habitB = Habit(title: "ab");
+    // act
+    int compareAToB = habitA.compareTo(habitB);
+    // assert
+    assert(compareAToB < 0);
+  });
+
+  test("Habit.isDoneToday returns true if completed today, false otherwise",
+      () {
+    // arrange
+    final doneToday = Habit.doneToday(Habit(
+      title: "done today",
+      doneDays: [false, false, false, false, false, false, false],
+    ));
+    final notDoneToday = Habit.notDoneToday(Habit(
+      title: "not done today",
+      doneDays: [true, true, true, true, true, true, true],
+    ));
+    // act
+    // assert
+    assert(true == doneToday.isDoneToday);
+    assert(false == notDoneToday.isDoneToday);
+  });
 }
